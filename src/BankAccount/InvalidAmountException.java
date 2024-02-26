@@ -1,5 +1,8 @@
 package BankAccount;
 
-public class InvalidAmountException {
-    private String InvalidAmountException;
+public class InvalidAmountException extends RuntimeException{
+
+    public InvalidAmountException(String message) {
+        super(message);
+    }
 }

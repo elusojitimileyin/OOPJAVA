@@ -1,2 +1,4 @@
-package ManAndItsEnvironment;public class Human {
+package ManAndItsEnvironment;
+
+public class Human {
 }
