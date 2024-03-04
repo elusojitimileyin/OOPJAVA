@@ -1,18 +1,32 @@
 package BankAccount;
 
+import Exceptions.InsufficientFundsException;
+import Exceptions.InvalidAmountException;
+import Exceptions.InvalidPinException;
+
 public class Account {
-    private String firstName;
-    private String lastName;
-    private int balance;
+
+    private String name;
+    private int balance = 0;
     private String pin;
     private int number;
 
-    public boolean validatePin(String key){
-        return pin.equals(key);
+    public Account(String name, int number, String pin) {
+        this.name = name;
+        this.number = number;
+        this.pin = pin;
+    }
+    public Account(String firstName,String lastName,String pin){
+        this(firstName+lastName,0,pin);
+
     }
 
-    public int getBalance(String pin){
-        if (!validatePin(pin)){
+    public boolean validatePin(String pin){
+        return !pin.equals(pin);
+    }
+
+    public int checkBalance(String pin){
+        if (validatePin(pin)){
             throw new InvalidPinException("Invalid Pin");
         }
         return balance;
@@ -23,29 +37,37 @@ public class Account {
     }
 
 
-    public void deposit(int amount){
-        if(amount > 0){
-            balance += amount;
+    public void deposit(int amount) {
+
+        validateDeposit(amount);
+        validatePin(pin);
+        balance += amount;
+
     }
+
+
+    public void validateDeposit(int amount){
+        if(amount <=  0) throw new InvalidAmountException("amount should be greater than zero");
     }
-    public void withdraw(int amount, String pin){
-        if(!validatePin(pin)) {
-            throw new InvalidPinException("Invalid pin");
 
-        }
-            if (amount < 0) {
-                throw new InvalidAmountException("Invalid withdrawal");
-            }
-            if (amount > balance) {
+    public void withdraw(int amount,String pin) {
+        validateWithdraw(amount);
+        validatePin(pin);
+        balance -= amount;
+    }
 
-                throw new InsufficientFundsException("Insufficient Funds");
-            }
+    public void validateWithdraw(int amount){
+        if(amount <=  0) throw  new InvalidAmountException("negative number cannot be withdrawn");
+        if(amount > balance) throw new InsufficientFundsException("amount above balance cannot be withdrawn");
+    }
 
-            balance -= amount;
-        }
+
 
     public int getNumber(){
         return number;
     }
 
+    public void setNumber(int number) {
+        this.number = number;
+    }
 }

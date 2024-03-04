@@ -1,5 +1,6 @@
-package Queue;
+package QueueTest;
 
+import Queue.MyQueue;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

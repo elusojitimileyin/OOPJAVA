@@ -7,16 +7,9 @@ public class Entry {
     private String title;
     private String body;
     private LocalDateTime dateCreated;
-public Entry(int id, String title, String body){
+public Entry(int id, String title, String body) {
     this.id = id;
     this.title = title;
     this.body = body;
 }
-    public void createEntry( String title, String body){
-
-        this.title = title;
-        this.body = body;
-    }
-
-
 }

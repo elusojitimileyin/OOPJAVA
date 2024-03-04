@@ -1,46 +1,70 @@
 package BankAccount;
 
-import javax.security.auth.login.AccountNotFoundException;
+
+import Exceptions.InvalidAmountException;
+
 import java.util.ArrayList;
 
 public class Bank {
-    private String firstName;
-    private String lastName;
-    private String pin;
+    private String name;
+    private int number = 1;
     private ArrayList<Account> accounts = new ArrayList<>();
 
-    public Bank(String bankName) {
-        int accountNumber = generateAccountNumber();
+    public Bank(String name) {
+        this.name = name;
     }
-    public int getNumberOfCustomer(){
+
+    public Account registerCustomer(String firstName, String lastName, String pin) {
+        Account account = new Account(firstName,lastName,pin);
+        account.setNumber(number);
+        accounts.add(account);
+        return account;
+    }
+
+
+
+    public int getNumberOfCustomer() {
         return accounts.size();
-                //numberOfCustomers;
     }
-    private int numberOfCustomers;
-        public Account registerCustomer (String firstName, String lastName, String pin){
-         //   numberOfCustomers++;
-            Account newAccount = new Account(1, firstName + " " + lastName);
-            accounts.add(newAccount);
-            return newAccount;
+
+    public int checkBalance(String pin, int accountNumber) {
+        Account account = findAccount(accountNumber);
+        return account.checkBalance(pin);
+    }
+
+    public void deposit(int amount, int accountNumber) {
+        Account account = findAccount(accountNumber);
+        account.deposit(amount);
+
+    }
+
+
+    public Account findAccount(int accountNumber) {
+
+        for (Account account : accounts) {
+            if (account.getNumber() == accountNumber) {
+                return account;
+            }
         }
-
-
-public int findAccount(int accountNumber) throws AccountNotFoundException {
-    //     return accounts.get(accountNumber-1);
-    for (Account account : accounts) {
-        if (account.getNumber() == accountNumber) {
-            throw new AccountNotFoundException("Account not found");
-        }
+   throw new InvalidAmountException("No such account is found.");
     }
-return accountNumber;
 
-}
-public void removeAccount(int accountNumber, String pin){
-            accounts.remove(accountNumber -1);
-}
-
-    private int generateAccountNumber() {
-
-        return numberOfCustomers;
+    public void transfer(int amount, int receiverAccountNumber, int senderAccountNumber, String pin) {
+        Account senderAccountNum = findAccount(senderAccountNumber);
+        Account receiverAccountNum = findAccount(receiverAccountNumber);
+        senderAccountNum.withdraw(amount, pin);
+        receiverAccountNum.deposit(amount);
     }
-}
+
+
+    public void withdraw(int accountNumber, int amount, String pin) {
+        Account account = findAccount(accountNumber);
+        account.withdraw(amount, pin);
+    }
+
+    public void removeAccount(int accountNumber, String pin) {
+        Account account = findAccount(accountNumber);
+        account.validatePin(pin);
+
+        accounts.remove(account);
+}}

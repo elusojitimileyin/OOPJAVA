@@ -1,6 +1,6 @@
 package Diarys;
 
-import BankAccount.InvalidPinException;
+import Exceptions.InvalidPinException;
 
 import java.util.ArrayList;
 
@@ -47,10 +47,10 @@ public Diary(String userName, String password){
     entries.remove(id);
     }
 
-    public Entry findEntryById(int id){
-
-    return null;
+    public Entry findEntryById(int  id) {
+        return entries.remove(id - 1);
     }
+
 
     public void updateEntry(int id, String title, String body){
 
@@ -60,5 +60,9 @@ public Diary(String userName, String password){
     return true;
     }
 
+
+    public int getNumberOfEntry() {
+        return entries.size();
+    }
 }
 

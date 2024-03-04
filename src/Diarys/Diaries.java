@@ -16,7 +16,8 @@ public void addToDiary(String userName, String password){
 //    for (Diary myDiary : diaries){
 //        if (myDiary.getUserName());
 //    }
-////    return myDiary;
+//    String findDiary = "myDiary";
+//    return findDiary;
 //}
 public void delete(String userName, String password){
 

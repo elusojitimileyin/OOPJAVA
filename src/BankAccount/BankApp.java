@@ -1,7 +1,7 @@
 package BankAccount;
 
 import java.util.Scanner;
-import java.util.concurrent.TransferQueue;
+
 
 public class BankApp {
 
@@ -27,9 +27,12 @@ public class BankApp {
                 6. Close Account.
                 7. Exit App.
                 
-               Thank you for using TIMI Bank\s
+               Thank you for choosing TIMI Bank
+               Please enter your choice.
+               
                 """;
-        String userInput = input(mainMenu);
+        System.out.println(mainMenu);
+        String userInput = input("Enter your choice: ");
 
 
         switch (userInput.charAt(0)) {
@@ -40,16 +43,30 @@ public class BankApp {
             case '5' -> CheckBalance();
             case '6' -> CloseAccount();
             case '7' -> ExitApp();
-
+            default -> System.out.println("Invalid option! Please try again.");
         }
+        gotoMainMenu();
+            }
 
-    }
+
 
     private static void Withdraw() {
+
+            String firstName = input("firstName:");
+            String lastName = input("lastName:");
+            String pin = input("pin:");
+            Account newAccount = myBank.registerCustomer(firstName,lastName,pin);
+
 
     }
 
     private static void Deposit() {
+        String firstName = input("firstName:");
+        String lastName = input("lastName:");
+        String pin = input("pin:");
+        Account newAccount = myBank.registerCustomer(firstName,lastName,pin);
+
+
     }
 
     private static void Transfer() {
@@ -65,14 +82,16 @@ public class BankApp {
         String firstName = input("firstName:");
         String lastName = input("lastName:");
         String pin = input("pin:");
-        Account newAccount = myBank.registerCustomer("firstname","lastName","pin");
+        Account newAccount = myBank.registerCustomer(firstName,lastName,pin);
     }
 
     private static void ExitApp() {
-System.exit(0);
+        System.exit(0);
     }
     private static String input(String mainMenu) {
-        return null;
+        System.out.println(mainMenu);
+        Scanner scanner = new Scanner(System.in);
+        return scanner.nextLine();
     }
 
 

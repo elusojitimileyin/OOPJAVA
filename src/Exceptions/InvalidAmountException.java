@@ -1,4 +1,4 @@
-package BankAccount;
+package Exceptions;
 
 public class InvalidAmountException extends RuntimeException{
 

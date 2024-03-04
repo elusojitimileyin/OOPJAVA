@@ -1,5 +1,6 @@
-package Diarys;
+package DiarysTest;
 
+import Diarys.Diaries;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
