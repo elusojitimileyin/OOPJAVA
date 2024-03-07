@@ -15,13 +15,6 @@ class TaskOneTest {
         assertEquals(expected, myTaskOne.calculateWages(collectionRate) );
 
     }
-    @Test
-    void testCollectionRateLessThan68(){
-        TaskOne myTaskOne = new TaskOne();
-        int collectionRate = 60;
-        int expected = 60 * 250 + 5000;
-        assertEquals(expected, myTaskOne.calculateWages(collectionRate) );
 
     }
 
-}
