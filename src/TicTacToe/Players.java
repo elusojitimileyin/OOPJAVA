@@ -1,16 +1,30 @@
 package TicTacToe;
 
-public enum Players {
-    X('X'),
-    O ('O'),
-    EMPTY('-');
+public class Players {
 
-    private final char entity;
+    public static final char X = 'X';
+    public static final char O = 'O';
 
-    Players(char entity){
-        this.entity = entity;
+    public static final char EMPTY = '-';
+    private final String name;
+    private final char PlayersEnum;
+
+    public Players(String name, char PlayersEnum) {
+        this.name = name;
+        this.PlayersEnum = PlayersEnum;
     }
-public char getEntity(){
-        return entity;
-}
+    public String getName(){
+
+        return name;
+    }
+    public char getCurrentPlayer(){
+
+        return PlayersEnum;
+    }
+
+
+
+    public char getEntity(){
+        return PlayersEnum;
+    }
 }

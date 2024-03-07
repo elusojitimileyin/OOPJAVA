@@ -12,6 +12,7 @@ public class BankApp {
     static Scanner input = new Scanner(System.in);
 
     public static void main(String[] args) {
+
         gotoMainMenu();
     }
 
@@ -70,6 +71,7 @@ public class BankApp {
     }
 
     private static void Transfer() {
+
     }
 
     private static void CheckBalance() {

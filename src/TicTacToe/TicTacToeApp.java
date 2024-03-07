@@ -5,6 +5,7 @@ import Exceptions.NullPlayerException;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Scanner;
 
 
 public class TicTacToeApp {
@@ -16,13 +17,24 @@ public class TicTacToeApp {
     }
 
     private static void print(String prompt) {
+
         JOptionPane.showMessageDialog(null, prompt);
     }
 
     private static String input(String prompt) {
+
         return JOptionPane.showInputDialog(prompt);
     }
 
+//    private static final Scanner scanner = new Scanner(System.in);
+//    private static String input(String prompt) {
+//       System.out.print(prompt);
+//        return scanner.nextLine();
+//   }
+//
+//   private static void print(String prompt) {
+//        System.out.println(prompt);
+//   }
     public static void welcome() {
         print("Welcome To GameByOBANTU\n");
         print("The next page Displays, Shows And Help You With Your Choice ?\n");
@@ -34,9 +46,7 @@ public class TicTacToeApp {
 
         for (int row = 0; row < 3; row++) {
             for (int column = 0; column < 3; column++) {
-                JLabel label = new JLabel(String.valueOf(createBoard[row][column]));
-                label.setHorizontalAlignment(JLabel.CENTER);
-                label.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+                JLabel label = getLabel(createBoard, row, column);
                 panel.add(label);
             }
         }
@@ -46,12 +56,28 @@ public class TicTacToeApp {
         frame.setVisible(true);
     }
 
+    private static JLabel getLabel(char[][] createBoard, int row, int column) {
+        JLabel label = new JLabel();
+        label.setHorizontalAlignment(JLabel.CENTER);
+        label.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        label.setFont(new Font("Arial", Font.PLAIN, 50));
+
+        if (createBoard[row][column] == 'X') {
+            label.setText("X");
+        } else if (createBoard[row][column] == 'O') {
+            label.setText("O");
+        } else {
+            label.setText("");
+        }
+        return label;
+    }
+
     public static void mainApp() {
         TicTacToeApp myTicTacToeApp = new TicTacToeApp();
         welcome();
-        displayBoard(myTicTacToeApp.myGame.getBoard());
+       // displayBoard(myTicTacToeApp.myGame.getBoard());
 
-        while (myTicTacToeApp.myGame.getWinner() == ' ') {
+        while (myTicTacToeApp.myGame.getWinner() == ' ' && !myTicTacToeApp.myGame.isGameOver()) {
             int row = -1;
             int column = -1;
             try {
@@ -62,7 +88,7 @@ public class TicTacToeApp {
                     continue;
                 }
                 myTicTacToeApp.myGame.makeMove(row, column);
-                displayBoard(myTicTacToeApp.myGame.getBoard());
+         //       displayBoard(myTicTacToeApp.myGame.getBoard());
             } catch (NumberFormatException e) {
                 print("Invalid input. Please enter numeric values for row and column.");
             } catch (BoardFilledException e) {
@@ -78,6 +104,7 @@ public class TicTacToeApp {
         } else {
             print("It's a draw!");
         }
+
     }
 
     public static void main(String[] args) {

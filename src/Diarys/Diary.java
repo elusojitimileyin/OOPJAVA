@@ -3,66 +3,92 @@ package Diarys;
 import Exceptions.InvalidPinException;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Diary {
 
-private String userName;
+    private final String username;
 
-private String password;
-private boolean isLocked = true;
+    private final String password;
+    private boolean isLocked;
 
-private ArrayList<Entry> entries = new ArrayList<>();
+    private final List<Entry> entries = new ArrayList<>();
 
-public Diary(String userName, String password){
-    this.userName = userName;
-    this.password = password;
-
-}
-    public void unlockDiary (String password){
-        if(getPassword().equals(password)){
-            isLocked = false;
-        } else {
-            throw new InvalidPinException("Wrong PassWord Kindly Enter Your Password Again");
+    public Diary(String username, String password) {
+        if (username == null || username.isEmpty()) {
+            throw new IllegalArgumentException("Username cannot be null or empty.");
         }
+        if (password == null || password.isEmpty()) {
+            throw new IllegalArgumentException("Password cannot be null or empty.");
+        }
+        this.username = username;
+        this.password = password;
+        this.isLocked = true;
     }
 
-    private String getPassword() {
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPassword() {
         return password;
     }
 
-    public void  lockDiary(){
-    isLocked = true;
+    public boolean isLocked() {
+        return isLocked;
     }
-    public boolean isLocked(){
-    return isLocked;
-    }
-
-
-
-    public void createEntry(int id, String title, String body){
-        Entry myEntry = new Entry(1,"title","body");
-        entries.add(myEntry);
-    }
-    public void deleteEntry(int id){
-    entries.remove(id);
-    }
-
-    public Entry findEntryById(int  id) {
-        return entries.remove(id - 1);
-    }
-
-
-    public void updateEntry(int id, String title, String body){
-
-    }
-
-    public boolean getUserName() {
-    return true;
-    }
-
 
     public int getNumberOfEntry() {
         return entries.size();
     }
-}
 
+    public void lockDiary(String password) {
+        if (!this.password.equals(password)) {
+            throw new IllegalArgumentException("Incorrect password.");
+        }
+        this.isLocked = true;
+    }
+
+    public void unlockDiary(String password) {
+        if (!this.password.equals(password)) {
+            throw new InvalidPinException("Incorrect password.");
+        }
+        this.isLocked = false;
+    }
+
+    public void createEntry(int id, String title, String body) {
+        if (isLocked) {
+            throw new IllegalStateException("Diary is locked. Cannot add entry.");
+        }
+        Entry newEntry = new Entry(id, title, body);
+        entries.add(newEntry);
+    }
+
+    public Entry findEntryById(int id) {
+        if (isLocked) {
+            throw new IllegalStateException("Diary is locked. Cannot search for entry.");
+        }
+        for (Entry entry : entries) {
+            if (entry.getId() == id) {
+                return entry;
+            }
+        }
+        throw new IllegalArgumentException("Entry with id " + id + " not found.");
+    }
+
+    public void deleteEntry(int id) {
+        if (isLocked) {
+            throw new IllegalStateException("Diary is locked. Cannot delete entry.");
+        }
+        boolean removed = entries.removeIf(entry -> entry.getId() == id);
+        if (!removed) {
+            throw new IllegalArgumentException("Entry with id " + id + " not found.");
+        }
+    }
+
+    public void updateEntry(int id, String title, String body) {
+        if (isLocked) {
+            throw new IllegalStateException("Diary is locked. Cannot update entry.");
+        }
+    }
+}

@@ -1,5 +1,7 @@
-package BankAccount;
+package BankAccountTest;
 
+import BankAccount.Account;
+import BankAccount.Bank;
 import Exceptions.InvalidAmountException;
 import org.junit.jupiter.api.Test;
 

@@ -1,5 +1,6 @@
-package SegentDisplay;
+package SegmentDisplayTest;
 
+import SegentDisplay.SevenSegmentDisplay;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

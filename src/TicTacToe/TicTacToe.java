@@ -1,15 +1,18 @@
 package TicTacToe;
 
+import Exceptions.BoardFilledException;
+import Exceptions.NullPlayerException;
+
 public class TicTacToe {
     private char[][] board;
-    private Players currentPlayer;
+    private char currentPlayer;
 
     public TicTacToe(){
+
         board = new char[3][3];
         currentPlayer = Players.X;
-        createBoard();
-    }
 
+    }
 
 
 
@@ -22,15 +25,19 @@ public class TicTacToe {
         }
     }
 
-    public char[][] getBoard() {
-        return board;
-    }
 
-    public void makeMove(int row, int col) {
-        if (row < 0 || row >= 3 || col < 0 || col >= 3 || board[row][col] != '-') {
-            return;
+    public void makeMove(int row, int col)  {
+        if (row < 0 || row >= 3 || col < 0 || col >= 3) {
+            throw new IllegalArgumentException("Out of range");
         }
-        board[row][col] = currentPlayer.getEntity();
+        if (board[row][col] != '-') {
+            throw new BoardFilledException("Broad is filled");
+        }
+        if (currentPlayer == ' ') {
+            throw new NullPlayerException("wrong player");
+        }
+        board[row][col] = currentPlayer;
+        switchPlayer();
     }
 
     public boolean checkForWin() {
@@ -68,7 +75,7 @@ public class TicTacToe {
         }
     }
 
-    public Players getCurrentPlayer() {
+    public char getCurrentPlayer() {
         return currentPlayer;
     }
 
@@ -76,7 +83,7 @@ public class TicTacToe {
         return getWinner() != ' ' || checkDraw();
     }
 
-    private boolean checkDraw() {
+    private boolean checkDraw () {
         for (char[] chars : board) {
             for (char aChar : chars) {
                 if (aChar == '-') {
@@ -89,8 +96,13 @@ public class TicTacToe {
 
     public char getWinner() {
         if (checkForWin()) {
-            return currentPlayer.getEntity();
+            return currentPlayer;
         }
         return ' ';
+    }
+
+    public char[][] getBoard() {
+        createBoard();
+        return board;
     }
 }
