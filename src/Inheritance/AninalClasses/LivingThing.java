@@ -1,4 +1,4 @@
-package LivingThings;
+package Inheritance.AninalClasses;
 
 public class LivingThing {
     private String name;

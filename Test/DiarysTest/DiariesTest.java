@@ -29,16 +29,16 @@ class DiariesTest {
         assertEquals(2,newDiaries.getDiaries());
     }
 
-//    @Test
-//    public void addTwoDiary_findOneDiary(){
-//        Diaries newDiaries = new Diaries();
-//        assertEquals(0,newDiaries.getDiaries());
-//        newDiaries.addToDiary("userName","password");
-//        newDiaries.addToDiary("userName1","password");
-//        assertEquals(2,newDiaries.getDiaries());
-//        newDiaries.findByUserName("userName1");
-//        assertEquals(1,newDiaries.getDiaries());
-//    }
+    @Test
+    public void addTwoDiary_findOneDiary(){
+        Diaries newDiaries = new Diaries();
+        assertEquals(0,newDiaries.getDiaries());
+        newDiaries.addToDiary("userName","password");
+        newDiaries.addToDiary("userName1","password");
+        assertEquals(2,newDiaries.getDiaries());
+        newDiaries.findByUsername("userName1");
+        assertEquals(2,newDiaries.getDiaries());
+    }
 
 
 

@@ -35,10 +35,10 @@ class DiaryTest {
         assertTrue(myDiary.isLocked());
         myDiary.unlockDiary("1111");
         assertFalse(myDiary.isLocked());
-        myDiary.createEntry(1,"title","body");
-      assertEquals(  1 ,myDiary.getNumberOfEntry());
-        myDiary.createEntry(2,"title","body");
-        assertEquals(  2 ,myDiary.getNumberOfEntry());
+        myDiary.createEntry(1, "title", "body");
+        assertEquals(1, myDiary.getNumberOfEntry());
+        myDiary.createEntry(2, "title", "body");
+        assertEquals(2, myDiary.getNumberOfEntry());
 
 
     }
@@ -50,13 +50,14 @@ class DiaryTest {
         assertTrue(myDiary.isLocked());
         myDiary.unlockDiary("1111");
         assertFalse(myDiary.isLocked());
-        myDiary.createEntry(1,"title","body");
-        assertEquals(  1 ,myDiary.getNumberOfEntry());
-        myDiary.createEntry(2,"title","body");
-        assertEquals(  2 ,myDiary.getNumberOfEntry());
+        myDiary.createEntry(1, "title", "body");
+        assertEquals(1, myDiary.getNumberOfEntry());
+        myDiary.createEntry(2, "title", "body");
+        assertEquals(2, myDiary.getNumberOfEntry());
         myDiary.deleteEntry(1);
-        assertEquals( 1,myDiary.getNumberOfEntry());
+        assertEquals(1, myDiary.getNumberOfEntry());
     }
+
     @Test
     public void testForUnlockDairy_createEntry_findEntry() {
         Diary myDiary = new Diary("timi", "1111");
@@ -64,10 +65,10 @@ class DiaryTest {
         assertTrue(myDiary.isLocked());
         myDiary.unlockDiary("1111");
         assertFalse(myDiary.isLocked());
-        myDiary.createEntry(1,"title","body");
-        assertEquals(  1 ,myDiary.getNumberOfEntry());
-        myDiary.createEntry(2,"title","body");
-        assertEquals(  2 ,myDiary.getNumberOfEntry());
+        myDiary.createEntry(1, "title", "body");
+        assertEquals(1, myDiary.getNumberOfEntry());
+        myDiary.createEntry(2, "title", "body");
+        assertEquals(2, myDiary.getNumberOfEntry());
         myDiary.findEntryById(1);
         assertEquals(2, myDiary.getNumberOfEntry());
     }

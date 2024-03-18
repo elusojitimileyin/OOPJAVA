@@ -14,8 +14,6 @@ public class TicTacToe {
 
     }
 
-
-
     private  void createBoard() {
         board = new char[3][3];
         for (int i = 0; i < 3; i++){
@@ -28,7 +26,7 @@ public class TicTacToe {
 
     public void makeMove(int row, int col)  {
         if (row < 0 || row >= 3 || col < 0 || col >= 3) {
-            throw new IllegalArgumentException("Out of range");
+            throw new ArrayIndexOutOfBoundsException("Out of range");
         }
         if (board[row][col] != '-') {
             throw new BoardFilledException("Broad is filled");
@@ -76,10 +74,12 @@ public class TicTacToe {
     }
 
     public char getCurrentPlayer() {
+
         return currentPlayer;
     }
 
-    public boolean isGameOver() {
+    public boolean isGameOver()
+    {
         return getWinner() != ' ' || checkDraw();
     }
 

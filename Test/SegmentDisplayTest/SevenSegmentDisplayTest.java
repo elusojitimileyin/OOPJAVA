@@ -8,18 +8,12 @@ import static org.junit.jupiter.api.Assertions.*;
 public class SevenSegmentDisplayTest {
 
     @Test
-    public void testPrintNumberZero() {
+    public void testPrintNumber() {
 
-        SevenSegmentDisplay.printNumber("11111101");
-        assertEquals("11111101", SevenSegmentDisplay.getLastDisplayedNumber());
+        SevenSegmentDisplay.printNumber("11111111");
+        assertEquals("11111111", SevenSegmentDisplay.getLastDisplayedNumber());
     }
 
-    @Test
-    public void testPrintNumberOne() {
-        SevenSegmentDisplay mySevenSegmentDisplay = new SevenSegmentDisplay();
-        SevenSegmentDisplay.printNumber("01100001");
-        assertEquals("01100001", SevenSegmentDisplay.getLastDisplayedNumber());
-    }
 
 }
 

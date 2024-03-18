@@ -24,7 +24,8 @@ public class Players {
 
 
 
-    public char getEntity(){
+    public char getEntity() {
         return PlayersEnum;
+
     }
 }

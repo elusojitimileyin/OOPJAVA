@@ -1,6 +1,6 @@
-package LivingThings;
+package Inheritance.AninalClasses;
 
-public class Vertebrate extends Animal{
+public class Vertebrate extends Animal {
 
     private static final String name = "a";
 

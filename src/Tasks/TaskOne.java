@@ -4,25 +4,24 @@ public class TaskOne {
     private int collectionRate;
     private int amountPerParcel;
     private int basePay = 5000;
-    private  int commissionRate;
+    private  int commissionRate = 0 ;
 
 
 
 
-    public void validateSuccessfulDelivery() {
+    public void validateSuccessfulDelivery(int collectionRate) {
         if ( collectionRate < 50)
             amountPerParcel = 160;
-        if (collectionRate >=50 && collectionRate <= 59)
+        else if (collectionRate < 60)
             amountPerParcel = 200;
-        if (collectionRate >=60 && collectionRate <= 69)
+        else if (collectionRate < 70)
             amountPerParcel = 250;
-        if ( collectionRate >= 70)
+        else
             amountPerParcel = 500;
-
 
     }
     public int calculateWages(int collectionRate){
-        validateSuccessfulDelivery();
+        validateSuccessfulDelivery(collectionRate);
 
         commissionRate = collectionRate * amountPerParcel + basePay;
 

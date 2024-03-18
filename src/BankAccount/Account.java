@@ -8,7 +8,7 @@ public class Account {
 
     private String name;
     private int balance = 0;
-    private String pin;
+    private final String pin;
     private int number;
 
     public Account(String name, int number, String pin) {
@@ -21,8 +21,8 @@ public class Account {
 
     }
 
-    public boolean validatePin(String pin){
-        return !pin.equals(pin);
+    public boolean validatePin(String Pin){
+        return !pin.equals(Pin);
     }
 
     public int checkBalance(String pin){
@@ -64,10 +64,12 @@ public class Account {
 
 
     public int getNumber(){
+
         return number;
     }
 
     public void setNumber(int number) {
+
         this.number = number;
     }
 }

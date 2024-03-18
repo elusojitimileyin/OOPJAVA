@@ -3,13 +3,15 @@ package Queue;
 import java.util.ArrayList;
 
 public class MyQueue<integer> {
-    private ArrayList<integer> queue;
+    private final ArrayList<integer> queue;
 
     public MyQueue() {
+
         queue = new ArrayList<>();
     }
 
     public boolean isEmpty() {
+
         return queue.isEmpty();
     }
 

@@ -11,23 +11,27 @@ public class Bank {
     private ArrayList<Account> accounts = new ArrayList<>();
 
     public Bank(String name) {
+
         this.name = name;
     }
 
-    public Account registerCustomer(String firstName, String lastName, String pin) {
-        Account account = new Account(firstName,lastName,pin);
-        account.setNumber(number);
-        accounts.add(account);
+    public Account registerCustomer(String firstName, String lastName, int pin) {
+        String name = firstName + " " + lastName;
+        Account account = new Account(name, number, String.valueOf(pin));
+        this.accounts.add(account);
+        this.number++;
         return account;
     }
 
 
 
+
     public int getNumberOfCustomer() {
+
         return accounts.size();
     }
 
-    public int checkBalance(String pin, int accountNumber) {
+    public int checkBalance( int accountNumber, String pin) {
         Account account = findAccount(accountNumber);
         return account.checkBalance(pin);
     }

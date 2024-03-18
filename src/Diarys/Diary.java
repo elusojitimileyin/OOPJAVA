@@ -10,7 +10,9 @@ public class Diary {
     private final String username;
 
     private final String password;
-    private boolean isLocked;
+
+    private  int id;
+    private boolean isLocked = true;
 
     private final List<Entry> entries = new ArrayList<>();
 
@@ -23,7 +25,6 @@ public class Diary {
         }
         this.username = username;
         this.password = password;
-        this.isLocked = true;
     }
 
     public String getUsername() {
@@ -89,6 +90,12 @@ public class Diary {
     public void updateEntry(int id, String title, String body) {
         if (isLocked) {
             throw new IllegalStateException("Diary is locked. Cannot update entry.");
+        } for (Entry entry : entries)
+                if (entry.getId() == id && entry.getTitle().equals(title) && entry.getBody().equals(body)) {
+                  return;
+                }
+
+            throw new IllegalArgumentException("Entry with id " + id + " not found.");
         }
-    }
-}
+        }
+
